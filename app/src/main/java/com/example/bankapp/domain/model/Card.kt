@@ -1,4 +1,4 @@
-package com.example.bankapp.domain
+package com.example.bankapp.domain.model
 
 import androidx.compose.ui.graphics.Brush
 

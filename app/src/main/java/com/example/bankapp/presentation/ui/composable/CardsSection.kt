@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,9 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bankapp.R
-import com.example.bankapp.domain.Card
-import com.example.bankapp.domain.CardType
-import com.example.bankapp.domain.InternationalMarkType
+import com.example.bankapp.domain.model.Card
+import com.example.bankapp.domain.model.CardType
+import com.example.bankapp.domain.model.InternationalMarkType
 import com.example.bankapp.presentation.ui.theme.BlueEnd
 import com.example.bankapp.presentation.ui.theme.BlueStart
 import com.example.bankapp.presentation.ui.theme.OrangeEnd
@@ -80,7 +79,10 @@ fun CardsSection(){
 }
 
 @Composable
-fun CardItem(card: Card){
+fun CardItem(
+    card: Card,
+    onCardClick: () -> Unit = {}
+){
     Box(
         modifier = Modifier.padding(
             start = 16.dp, end = if(card == cards.last()) 16.dp else 0.dp
@@ -92,7 +94,7 @@ fun CardItem(card: Card){
                 .background(card.color)
                 .width(250.dp)
                 .height(160.dp)
-                .clickable {  }
+                .clickable(onClick = onCardClick)
                 .padding(vertical = 12.dp, horizontal = 16.dp)
         ) {
             Image(

@@ -14,8 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.bankapp.domain.model.Finance
 import com.example.bankapp.presentation.ui.composable.BottomNavigationBar
 import com.example.bankapp.presentation.ui.composable.CardsSection
+import com.example.bankapp.presentation.ui.composable.FinanceSection
 import com.example.bankapp.presentation.ui.composable.WalletSection
 import com.example.bankapp.presentation.ui.theme.BankAppTheme
 
@@ -37,6 +39,9 @@ class MainActivity : ComponentActivity() {
                         WalletSection()
                         Spacer(modifier = Modifier.height(16.dp))
                         CardsSection()
+                        Spacer(modifier = Modifier.height(16.dp))
+                        FinanceSection()
+
                     }
                 }
             }
