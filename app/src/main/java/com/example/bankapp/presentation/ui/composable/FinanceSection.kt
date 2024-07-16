@@ -5,6 +5,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -57,14 +60,18 @@ val finances = listOf(
 @Preview
 @Composable
 fun FinanceSection() {
-    Column {
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ) {
         //Title
         Text(
             text = "Finance",
-            fontSize = 24.sp,
+            fontSize = 18.sp,
             color = MaterialTheme.colorScheme.onBackground
         )
+        Spacer(modifier = Modifier.height(10.dp))
         LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
             content = {
                 items(finances.size) {
                     FinanceItem(finance = finances[it])
@@ -75,14 +82,17 @@ fun FinanceSection() {
 }
 
 @Composable
-fun FinanceItem(finance: Finance) {
+fun FinanceItem(
+    finance: Finance,
+    onItemClick: (Finance) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(25.dp))
             .background(MaterialTheme.colorScheme.secondaryContainer)
             .size(120.dp)
-            .clickable {  }
-            .padding(start = 16.dp, end = if(finance == finances.last()) 16.dp else 0.dp),
+            .clickable { onItemClick(finance) }
+            .padding(16.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Box(

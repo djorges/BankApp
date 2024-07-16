@@ -33,7 +33,6 @@ fun BottomNavigationBar(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.inverseOnSurface)
-            .padding(8.dp)
     ){
         items.forEachIndexed{ index, item ->
             NavigationBarItem(

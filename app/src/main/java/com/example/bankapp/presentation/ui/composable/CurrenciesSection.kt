@@ -6,8 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,6 +23,7 @@ import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.CurrencyPound
 import androidx.compose.material.icons.rounded.CurrencyYen
 import androidx.compose.material.icons.rounded.Euro
+import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.KeyboardArrowUp
 import androidx.compose.material.icons.rounded.KeyboardDoubleArrowRight
 import androidx.compose.material3.Divider
@@ -79,110 +82,70 @@ val currencies = listOf(
 
 @Composable
 fun CurrenciesSection(){
-    var isVisible by remember {
-        mutableStateOf(false)
-    }
-    var iconState by remember {
-        mutableStateOf(Icons.Rounded.KeyboardArrowUp)
-    }
-
-    Column(
+    Box(
         modifier = Modifier
-            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 16.dp))
-            .background(MaterialTheme.colorScheme.inverseOnSurface)
-            .animateContentSize()
-    ) {
-        //Title & Toggle
-        Row(
+            .fillMaxSize()
+            .padding(top = 16.dp),
+        contentAlignment = Alignment.TopCenter
+    ){
+        Column(
             modifier = Modifier
-                .padding(16.dp)
-                .animateContentSize()
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            Box(
+                .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 16.dp))
+                .background(MaterialTheme.colorScheme.inverseOnSurface)
+        ) {
+            //Title & Toggle
+            Row(
                 modifier = Modifier
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.secondary)
-                    .clickable {
-                        isVisible = !isVisible
-                        iconState =
-                            if (isVisible) Icons.Rounded.KeyboardDoubleArrowRight else Icons.Rounded.KeyboardArrowUp
-                    }
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ){
-                Icon(
-                    modifier = Modifier.size(25.dp),
-                    imageVector = iconState,
-                    contentDescription = "Currencies",
-                    tint = MaterialTheme.colorScheme.onSecondary
+                Text(
+                    text = "Currencies",
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    fontWeight = FontWeight.Bold
                 )
             }
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(
-                text = "Currencies",
-                fontSize = 20.sp,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                fontWeight = FontWeight.Bold
-            )
-        }
-        Divider(
-            modifier = Modifier.padding(start = 16.dp),
-            thickness = 1.dp,
-            color = MaterialTheme.colorScheme.onSecondaryContainer
-        )
-        if (isVisible){
             //Currency Table
-            BoxWithConstraints(
+            val textStyle = TextStyle(
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.SemiBold,
+                textAlign = TextAlign.End
+            )
+            LazyColumn(
+                contentPadding = PaddingValues(14.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
-                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-                    .background(MaterialTheme.colorScheme.background)
             ){
-                val width = this.maxWidth / 3
-                val textStyle = TextStyle(
-                    fontSize = 16.sp,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.End
-                )
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Spacer(modifier = Modifier.height(16.dp))
+                item {
+                    //Headers
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        //Headers
                         Text(
-                            modifier = Modifier.width(width),
+                            modifier = Modifier.weight(1f),
                             text = "Currency",
                             style = textStyle
                         )
                         Text(
-                            modifier = Modifier.width(width),
+                            modifier = Modifier.weight(1f),
                             text = "Buy",
                             style = textStyle
                         )
                         Text(
-                            modifier = Modifier.width(width),
+                            modifier = Modifier.weight(1f),
                             text = "Sell",
                             style = textStyle
                         )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        //Currency List
-                        LazyColumn{
-                            this.items(currencies.size){index ->
-                                CurrencyItem(
-                                    currency = currencies[index],
-                                    width = width
-                                )
-                            }
-                        }
                     }
+                }
+                items(currencies.size){index ->
+                    CurrencyItem(
+                        currency = currencies[index]
+                    )
                 }
             }
         }
@@ -190,26 +153,51 @@ fun CurrenciesSection(){
 }
 
 @Composable
-fun CurrencyItem(currency: Currency, width: Dp){
+fun CurrencyItem(currency: Currency){
+    val textStyle = TextStyle(
+        fontSize = 16.sp,
+        color = MaterialTheme.colorScheme.onBackground,
+        fontWeight = FontWeight.Bold
+    )
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp),
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ){
-        //Icon
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
-                .background(GreenStart)
-                .padding(8.dp)
+        Row(
+            modifier = Modifier.weight(1f),
+            verticalAlignment = Alignment.CenterVertically
         ){
-            Icon(
-                modifier = Modifier.size(20.dp),
-                imageVector = currency.icon,
-                contentDescription = currency.name,
-                tint = Color.White
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(GreenStart)
+                    .padding(8.dp)
+            ){
+                Icon(
+                    modifier = Modifier.size(16.dp),
+                    imageVector = currency.icon,
+                    contentDescription = currency.name,
+                    tint = Color.White
+                )
+            }
+            Text(
+                modifier = Modifier.padding(start = 10.dp),
+                text = currency.name,
+                style = textStyle
             )
         }
+        //
+        Text(
+            modifier = Modifier.weight(1f),
+            text = "$ ${currency.buy}",
+            style = textStyle,
+            textAlign = TextAlign.End
+        )
+        Text(
+            modifier = Modifier.weight(1f),
+            text = "$ ${currency.sell}",
+            style = textStyle,
+            textAlign = TextAlign.End
+        )
     }
 }

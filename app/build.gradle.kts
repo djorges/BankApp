@@ -66,5 +66,18 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("androidx.compose.material:material-icons-extended:1.6.7")
+
+    //Material Icons
+    implementation(libs.androidx.material.icons.extended)
+
+    //Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //Coil
+    implementation(libs.coil.compose)
 }
