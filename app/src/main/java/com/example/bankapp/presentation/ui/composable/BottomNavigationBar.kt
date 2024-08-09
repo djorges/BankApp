@@ -5,8 +5,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
+import androidx.compose.material.icons.rounded.HeadsetMic
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.MonetizationOn
 import androidx.compose.material.icons.rounded.Notifications
+import androidx.compose.material.icons.rounded.QrCode
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Wallet
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,9 +24,10 @@ import com.example.bankapp.domain.model.BottomNavigationItem
 
 val items = listOf(
     BottomNavigationItem("Home", Icons.Rounded.Home),
-    BottomNavigationItem("Wallet", Icons.Rounded.Wallet),
-    BottomNavigationItem("Notification", Icons.Rounded.Notifications),
-    BottomNavigationItem("Account", Icons.Rounded.AccountCircle),
+    BottomNavigationItem("Finance", Icons.Rounded.MonetizationOn),
+    BottomNavigationItem("QR", Icons.Rounded.QrCode),
+    BottomNavigationItem("Help", Icons.Rounded.HeadsetMic),
+    BottomNavigationItem("Settings", Icons.Rounded.Settings),
 )
 
 @Composable

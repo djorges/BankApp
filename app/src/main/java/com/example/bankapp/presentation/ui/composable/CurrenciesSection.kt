@@ -84,14 +84,12 @@ val currencies = listOf(
 fun CurrenciesSection(){
     Box(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 16.dp),
+            .fillMaxWidth()
+            .padding(vertical = 16.dp),
         contentAlignment = Alignment.TopCenter
     ){
         Column(
-            modifier = Modifier
-                .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 16.dp))
-                .background(MaterialTheme.colorScheme.inverseOnSurface)
+            modifier = Modifier.clip(RoundedCornerShape(topStart = 20.dp, topEnd = 16.dp))
         ) {
             //Title & Toggle
             Row(
@@ -160,7 +158,7 @@ fun CurrencyItem(currency: Currency){
         fontWeight = FontWeight.Bold
     )
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
         Row(

@@ -8,19 +8,19 @@ data class CurrencyDto(
     @SerializedName("last_updated")
     val lastUpdated: String?,
     @SerializedName("market_cap")
-    val marketCap: Int?,
+    val marketCap: Float?,
     @SerializedName("market_cap_dominance")
-    val marketCapDominance: Int?,
+    val marketCapDominance: Float?,
     @SerializedName("percent_change_1h")
-    val percentChange1h: Int?,
+    val percentChange1h: Float?,
     @SerializedName("percent_change_24h")
-    val percentChange24h: Int?,
+    val percentChange24h: Float?,
     @SerializedName("percent_change_7d")
-    val percentChange7d: Int?,
+    val percentChange7d: Float?,
     @SerializedName("price")
-    val price: Int?,
+    val price: Float?,
     @SerializedName("volume_24h")
-    val volume24h: Int?,
+    val volume24h: Float?,
     @SerializedName("volume_change_24h")
-    val volumeChange24h: Double?
+    val volumeChange24h: Float?
 )

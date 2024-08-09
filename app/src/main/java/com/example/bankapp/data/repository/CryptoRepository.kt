@@ -4,5 +4,5 @@ import com.example.bankapp.data.api.BaseModel
 import com.example.bankapp.data.dto.CryptoCurrenciesDto
 
 interface CryptoRepository {
-    suspend fun getListingLatest(): BaseModel<CryptoCurrenciesDto>
+    suspend fun getListingLatest(): CryptoCurrenciesDto
 }

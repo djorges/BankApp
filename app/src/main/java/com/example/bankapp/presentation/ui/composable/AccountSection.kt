@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -27,15 +28,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.bankapp.domain.model.WalletState
+import com.example.bankapp.domain.model.AccountState
 
 @Preview
 @Composable
-fun WalletSection(
+fun AccountSection(
     onSearchClick: () -> Unit = {}
 ){
-    val walletState by remember{ mutableStateOf(
-        WalletState(4500.00)
+    val accountState by remember{ mutableStateOf(
+        AccountState(1,"Salary Account USD",4500.00)
     ) }
     //Wallet
     Row(
@@ -53,13 +54,13 @@ fun WalletSection(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "$${walletState.balance}",
+                text = "$${accountState.balance}",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground
             )
         }
-        //Search Icon
+        //Actions
         Box (
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
@@ -68,8 +69,8 @@ fun WalletSection(
                 .padding(6.dp)
         ){
             Icon(
-                imageVector = Icons.Outlined.Search,
-                contentDescription = "Search",
+                imageVector = Icons.Filled.RemoveRedEye,
+                contentDescription = "View details",
                 tint = MaterialTheme.colorScheme.onSecondaryContainer
             )
         }

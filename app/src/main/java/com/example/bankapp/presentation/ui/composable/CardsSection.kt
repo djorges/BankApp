@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -71,7 +72,17 @@ val cards = listOf(
 @Preview
 @Composable
 fun CardsSection(){
-    LazyRow {
+    Text(
+        text = "Cards",
+        color = Color.Gray,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold
+    )
+    LazyRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp)
+    ) {
         items(cards.size){
             CardItem(card = cards[it])
         }
