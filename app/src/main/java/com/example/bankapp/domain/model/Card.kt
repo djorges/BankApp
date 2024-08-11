@@ -9,7 +9,8 @@ data class Card(
     val icon: Int,
     val number: String,
     val name: String,
-    val balance: Double,
+    val date: String,
+    val cvv: String,
     val color: Brush
 )
 
